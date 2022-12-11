@@ -1,0 +1,57 @@
+<?php
+
+namespace App\MoonShine\Resources;
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+
+use Leeto\MoonShine\Fields\Date;
+use Leeto\MoonShine\Fields\Text;
+use Leeto\MoonShine\Resources\Resource;
+use Leeto\MoonShine\Fields\ID;
+use Leeto\MoonShine\Actions\FiltersAction;
+use VI\LaravelSiteSettings\Models\LaravelSiteSettingGroup;
+
+class LaravelSiteSettingGroupResource extends Resource
+{
+    public static string $model = LaravelSiteSettingGroup::class;
+
+    public static string $title = 'Settings groups';
+
+    public string $titleField = 'slug';
+
+    public function fields(): array
+    {
+        return [
+            ID::make()->sortable(),
+            Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -'),
+            Text::make('Name', 'name')->nullable()->sortable(),
+            Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
+        ];
+    }
+
+    public function rules(Model $item): array
+    {
+        return [
+            'slug' => 'required|max:190|regex:/^([a-z0-9\-])$/i|unique:laravel_site_setting_groups,slug,' . $item->getKey(),
+            'name' => 'nullable|max:190',
+        ];
+    }
+
+    public function search(): array
+    {
+        return ['id', 'slug', 'name'];
+    }
+
+    public function filters(): array
+    {
+        return [];
+    }
+
+    public function actions(): array
+    {
+        return [
+            FiltersAction::make(trans('moonshine::ui.filters')),
+        ];
+    }
+}
