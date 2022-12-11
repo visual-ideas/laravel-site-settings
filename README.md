@@ -50,6 +50,11 @@ You can use this package as default laravel config() function!
     }
 ```
 
+or Blade directive @lssconfig
+```php
+    @lssconfig('group.setting')
+```
+
 ## Usage with MoonShine Laravel Admin
 Please see [MoonShine](https://moonshine.cutcode.ru/)
 

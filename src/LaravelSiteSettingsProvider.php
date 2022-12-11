@@ -2,6 +2,7 @@
 
 namespace VI\LaravelSiteSettings;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use VI\LaravelSiteSettings\Models\LaravelSiteSetting;
 use VI\LaravelSiteSettings\Models\LaravelSiteSettingGroup;
@@ -36,6 +37,10 @@ class LaravelSiteSettingsProvider extends ServiceProvider
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         }
+
+        Blade::directive('lssconfig', function (...$expression) {
+            return "<?php echo lssconfig($expression); ?>";
+        });
 
         LaravelSiteSetting::observe(LSSObserver::class);
         LaravelSiteSettingGroup::observe(LSSObserver::class);
