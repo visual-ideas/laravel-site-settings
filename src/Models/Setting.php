@@ -16,7 +16,7 @@ class Setting extends Model
         'value',
     ];
 
-    public function settingsGroup(): BelongsTo
+    public function settingGroup(): BelongsTo
     {
         return $this->belongsTo(SettingGroup::class);
     }
