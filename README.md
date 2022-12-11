@@ -51,11 +51,13 @@ You can use this package as default laravel config() function!
 ```
 
 ## Usage with MoonShine Laravel Admin
-Please see [MoonShine](https://github.com/lee-to/moonshine)
+Please see [MoonShine](https://moonshine.cutcode.ru/)
 
+You can publish two [MoonShine Resources](https://moonshine.cutcode.ru/resources-index) with command:
 ```bash
 php artisan vendor:publish --provider="VI\LaravelSiteSettings\LaravelSiteSettingsProvider" --tag="moonshine"
 ```
+and use them in your MoonShine admin panel
 
 
 ## Credits
