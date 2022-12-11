@@ -70,8 +70,6 @@ class LaravelSiteSettings implements ConfigContract
     public function set($key, $value = null): void
     {
 
-        // TODO Add save to database on set
-
         $keys = is_array($key) ? $key : [$key => $value];
 
         foreach ($keys as $key => $value) {
