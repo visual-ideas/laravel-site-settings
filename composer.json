@@ -28,7 +28,10 @@
   "autoload": {
     "psr-4": {
       "VI\\LaravelSiteSettings\\": "src"
-    }
+    },
+    "files": [
+      "src/helpers.php"
+    ]
   },
   "extra": {
     "laravel": {

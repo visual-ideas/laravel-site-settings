@@ -8,6 +8,6 @@ class LaravelSiteSettings extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'LSS';
+        return 'LssConfig';
     }
 }

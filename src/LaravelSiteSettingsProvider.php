@@ -9,11 +9,11 @@ class LaravelSiteSettingsProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('LSS', function($app) {
+        $this->app->bind('LssConfig', function($app) {
             return new LaravelSiteSettings();
         });
 
-        //$this->mergeConfigFrom(__DIR__.'/../config/config.php', 'moonshine-site-settings');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel_site_settings');
     }
 
     public function boot()
@@ -21,9 +21,9 @@ class LaravelSiteSettingsProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
 
-            //$this->publishes([
-            //    __DIR__.'/../config/config.php' => config_path('laravel-site-settings.php'),
-            //], 'config');
+            $this->publishes([
+                __DIR__.'/../config/config.php' => config_path('laravel_site_settings.php'),
+            ], 'config');
             // php artisan vendor:publish --provider="VI\LaravelSiteSettings\LaravelSiteSettingsProvider" --tag="config"
 
         }
