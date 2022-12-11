@@ -11,12 +11,8 @@ class LaravelSiteSettings implements ConfigContract
 
     protected array $items;
 
-    protected string $defaultGroupSlug;
-
     public function __construct()
     {
-
-        $this->defaultGroupSlug = config('laravel_site_settings.default_group_slug');
 
         $this->items = cache()->rememberForever(config('laravel_site_settings.default_cache_key'), function () {
             return LaravelSiteSettingGroup::all()
@@ -89,8 +85,8 @@ class LaravelSiteSettings implements ConfigContract
     /**
      * Prepend a value onto an array configuration value.
      *
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed $value
      * @return void
      */
     public function prepend($key, $value): void
@@ -105,8 +101,8 @@ class LaravelSiteSettings implements ConfigContract
     /**
      * Push a value onto an array configuration value.
      *
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed $value
      * @return void
      */
     public function push($key, $value): void
