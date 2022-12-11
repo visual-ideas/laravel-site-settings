@@ -4,6 +4,7 @@ namespace VI\LaravelSiteSettings;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use VI\LaravelSiteSettings\LaravelSiteSettings;
 use VI\LaravelSiteSettings\Models\Setting;
 use VI\LaravelSiteSettings\Models\SettingGroup;
 use VI\LaravelSiteSettings\Observers\LSSObserver;

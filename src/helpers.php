@@ -14,13 +14,13 @@ if (!function_exists('settings')) {
     function settings($key = null, $default = null)
     {
         if (is_null($key)) {
-            return app('Settings')->all();
+            return app('settings')->all();
         }
 
         if (is_array($key)) {
-            return app('Settings')->set($key);
+            return app('settings')->set($key);
         }
 
-        return app('Settings')->get($key, $default);
+        return app('settings')->get($key, $default);
     }
 }
