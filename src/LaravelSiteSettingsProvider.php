@@ -9,6 +9,10 @@ class LaravelSiteSettingsProvider extends ServiceProvider
 
     public function register()
     {
+        $this->app->bind('LSS', function($app) {
+            return new LaravelSiteSettings();
+        });
+
         //$this->mergeConfigFrom(__DIR__.'/../config/config.php', 'moonshine-site-settings');
     }
 
