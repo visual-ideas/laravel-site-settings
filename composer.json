@@ -1,0 +1,46 @@
+{
+  "name": "visual-ideas/laravel-site-settings",
+  "description": "Easy Laravel nested settings (stored in MYSQL) package with MoonShine Laravel Admin GUI",
+  "keywords": [
+    "Settings",
+    "Laravel",
+    "Package",
+    "PHP",
+    "MySQL",
+    "MoonShine",
+    "VisualIdeas"
+  ],
+  "homepage": "https://github.com/visual-ideas/laravel-site-settings",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "AlexVenga",
+      "email": "alex.visualideas@gmail.com",
+      "role": "Developer"
+    }
+  ],
+
+  "require": {
+    "php": "^8.1",
+    "laravel/framework": "^9.21"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "VI\\LaravelSiteSettings\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "VI\\LaravelSiteSettings\\LaravelSiteSettingsProvider"
+      ],
+      "aliases": {
+        "LsSettings": "VI\\LaravelSiteSettings\\Facades\\LsSettings"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+
+}
