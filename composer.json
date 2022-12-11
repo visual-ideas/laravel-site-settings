@@ -39,7 +39,7 @@
         "VI\\LaravelSiteSettings\\LaravelSiteSettingsProvider"
       ],
       "aliases": {
-        "Settings": "VI\\LaravelSiteSettings\\Facades\\LaravelSiteSettings"
+        "LaravelSiteSettings": "VI\\LaravelSiteSettings\\Facades\\LaravelSiteSettings"
       }
     }
   },
