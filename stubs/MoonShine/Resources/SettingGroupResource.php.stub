@@ -24,7 +24,7 @@ class SettingGroupResource extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -'),
-            Text::make('Name', 'name')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
+            Text::make('Hint', 'name')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
             Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
         ];
     }
