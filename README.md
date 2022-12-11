@@ -38,21 +38,21 @@ return [
 You can use this package as default laravel config() function!
 
 ```php
-    function lss_config($key = null, $default = null)
+    function settings($key = null, $default = null)
     {
         if (is_null($key)) {
-            return app('LssConfig')->all();
+            return app('Settings')->all();
         }
 
         if (is_array($key)) {
-            return app('LssConfig')->set($key);
+            return app('Settings')->set($key);
         }
 
-        return app('LssConfig')->get($key, $default);
+        return app('Settings')->get($key, $default);
     }
 ```
 
-or Blade directive @lssconfig
+or Blade directive @settings
 ```php
     @settings('group.setting')
 ```
