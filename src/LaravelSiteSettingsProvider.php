@@ -3,6 +3,9 @@
 namespace VI\LaravelSiteSettings;
 
 use Illuminate\Support\ServiceProvider;
+use VI\LaravelSiteSettings\Models\LaravelSiteSetting;
+use VI\LaravelSiteSettings\Models\LaravelSiteSettingGroup;
+use VI\LaravelSiteSettings\Observers\LSSObserver;
 
 class LaravelSiteSettingsProvider extends ServiceProvider
 {
@@ -30,9 +33,12 @@ class LaravelSiteSettingsProvider extends ServiceProvider
                 __DIR__ . '/../stubs/MoonShine/Resources/LaravelSiteSettingResource.php.stub'      => app_path('MoonShine/Resources/LaravelSiteSettingResource.php'),
             ], 'moonshine');
 
+            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
         }
 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        LaravelSiteSetting::observe(LSSObserver::class);
+        LaravelSiteSettingGroup::observe(LSSObserver::class);
 
     }
 
