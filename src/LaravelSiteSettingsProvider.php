@@ -30,8 +30,8 @@ class LaravelSiteSettingsProvider extends ServiceProvider
             ], 'config');
 
             $this->publishes([
-                __DIR__ . '/../stubs/MoonShine/Resources/LaravelSiteSettingGroupResource.php.stub' => app_path('MoonShine/Resources/LaravelSiteSettingGroupResource.php'),
-                __DIR__ . '/../stubs/MoonShine/Resources/LaravelSiteSettingResource.php.stub'      => app_path('MoonShine/Resources/LaravelSiteSettingResource.php'),
+                __DIR__ . '/../stubs/MoonShine/Resources/SettingGroupResource.php.stub' => app_path('MoonShine/Resources/LaravelSiteSettingGroupResource.php'),
+                __DIR__ . '/../stubs/MoonShine/Resources/SettingResource.php.stub'      => app_path('MoonShine/Resources/LaravelSiteSettingResource.php'),
             ], 'moonshine');
 
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
