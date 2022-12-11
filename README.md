@@ -57,8 +57,14 @@ You can publish two [MoonShine Resources](https://moonshine.cutcode.ru/resources
 ```bash
 php artisan vendor:publish --provider="VI\LaravelSiteSettings\LaravelSiteSettingsProvider" --tag="moonshine"
 ```
-and use them in your MoonShine admin panel
+and use them in your MoonShine admin panel, like this:
 
+```php
+MenuGroup::make('Настройки', [
+    MenuItem::make('Настройки', LaravelSiteSettingResource::class)->icon('app'),
+    MenuItem::make('Группы настроек', LaravelSiteSettingGroupResource::class)->icon('app'),
+])->icon('app'),
+```
 
 ## Credits
 
