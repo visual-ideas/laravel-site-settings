@@ -14,7 +14,7 @@ class LaravelSiteSettings implements ConfigContract
     public function __construct()
     {
 
-        $this->items = cache()->rememberForever(config('laravel_site_settings.default_cache_key'), function () {
+        $this->items = cache()->rememberForever(config('laravelsitesettings.cache_key'), function () {
             return LaravelSiteSettingGroup::all()
                 ->load('settings')
                 ->keyBy('slug')

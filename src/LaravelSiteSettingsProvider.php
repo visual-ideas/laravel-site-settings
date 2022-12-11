@@ -13,7 +13,7 @@ class LaravelSiteSettingsProvider extends ServiceProvider
             return new LaravelSiteSettings();
         });
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'laravel_site_settings');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'laravelsitesettings');
     }
 
     public function boot()
@@ -22,7 +22,7 @@ class LaravelSiteSettingsProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('laravel_site_settings.php'),
+                __DIR__ . '/../config/config.php' => config_path('laravelsitesettings.php'),
             ], 'config');
 
             $this->publishes([
