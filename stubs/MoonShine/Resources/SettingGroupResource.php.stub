@@ -2,7 +2,6 @@
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 use Leeto\MoonShine\Fields\Date;
@@ -10,11 +9,11 @@ use Leeto\MoonShine\Fields\Text;
 use Leeto\MoonShine\Resources\Resource;
 use Leeto\MoonShine\Fields\ID;
 use Leeto\MoonShine\Actions\FiltersAction;
-use VI\LaravelSiteSettings\Models\LaravelSiteSettingGroup;
+use VI\LaravelSiteSettings\Models\SettingGroup;
 
 class SettingGroupResource extends Resource
 {
-    public static string $model = LaravelSiteSettingGroup::class;
+    public static string $model = SettingGroup::class;
 
     public static string $title = 'Settings groups';
 

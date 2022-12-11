@@ -10,11 +10,11 @@ use Leeto\MoonShine\Fields\Text;
 use Leeto\MoonShine\Resources\Resource;
 use Leeto\MoonShine\Fields\ID;
 use Leeto\MoonShine\Actions\FiltersAction;
-use VI\LaravelSiteSettings\Models\LaravelSiteSetting;
+use VI\LaravelSiteSettings\Models\Setting;
 
 class SettingResource extends Resource
 {
-    public static string $model = LaravelSiteSetting::class;
+    public static string $model = Setting::class;
 
     public static string $title = 'Settings';
 
@@ -26,7 +26,7 @@ class SettingResource extends Resource
             ID::make()->sortable(),
             BelongsTo::make(
                 'Group',
-                'laravel_site_setting_group_id',
+                'setting_group_id',
                 fn($item) => $item->name_human
             )->nullable()->sortable(),
             Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -'),
@@ -39,7 +39,7 @@ class SettingResource extends Resource
     public function rules(Model $item): array
     {
         return [
-            'laravel_site_setting_group_id' => 'required|exists:laravel_site_setting_groups,id',
+            'setting_group_id' => 'required|exists:setting_groups,id',
             'slug'  => 'required|max:190|regex:/^([a-z0-9\-]+)$/i|unique:laravel_site_setting_groups,slug,' . $item->getKey(),
             'name'  => 'nullable|max:190',
             'value' => 'required|max:190',
@@ -56,7 +56,7 @@ class SettingResource extends Resource
         return [
             BelongsTo::make(
                 'Group',
-                'laravel_site_setting_group_id',
+                'setting_group_id',
                 fn($item) => $item->name_human
             )->nullable(),
         ];
