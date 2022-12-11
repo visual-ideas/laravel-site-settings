@@ -11,7 +11,7 @@ class SettingGroup extends Model
 
     protected $fillable = [
         'slug',
-        'name',
+        'hint',
     ];
 
     public function settings(): HasMany

@@ -12,7 +12,7 @@ class Setting extends Model
     protected $fillable = [
         'setting_group_id',
         'slug',
-        'name',
+        'hint',
         'value',
     ];
 

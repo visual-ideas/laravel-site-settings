@@ -16,11 +16,9 @@ return new class extends Migration {
         Schema::create('setting_groups', function (Blueprint $table) {
             $table->id();
             $table->string('slug', 190)->unique();
-            $table->string('name', 190)->nullable();
+            $table->string('hint', 190)->nullable();
             $table->timestamps();
         });
-
-        \VI\LaravelSiteSettings\Models\SettingGroup::create(['slug' =>'default', 'name' =>'Default']);
     }
 
     /**

@@ -16,12 +16,13 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('setting_group_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
             $table->string('slug', 190);
-            $table->string('name', 190)->nullable();
+            $table->string('hint', 190)->nullable();
             $table->string('value', 190);
             $table->timestamps();
 

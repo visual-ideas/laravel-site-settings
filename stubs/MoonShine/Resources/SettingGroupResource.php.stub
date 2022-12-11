@@ -24,7 +24,7 @@ class SettingGroupResource extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -'),
-            Text::make('Hint', 'name')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
+            Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
             Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
         ];
     }
@@ -33,13 +33,13 @@ class SettingGroupResource extends Resource
     {
         return [
             'slug' => 'required|max:190|regex:/^([a-z0-9\-]+)$/i|unique:laravel_site_setting_groups,slug,' . $item->getKey(),
-            'name' => 'nullable|max:190',
+            'hint' => 'nullable|max:190',
         ];
     }
 
     public function search(): array
     {
-        return ['id', 'slug', 'name'];
+        return ['id', 'slug', 'hint'];
     }
 
     public function filters(): array

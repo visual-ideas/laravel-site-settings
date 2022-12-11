@@ -26,11 +26,10 @@ class SettingResource extends Resource
             ID::make()->sortable(),
             BelongsTo::make(
                 'Group',
-                'setting_group_id',
-                fn($item) => $item->name_human
+                'setting_group_id'
             )->nullable()->sortable(),
             Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -'),
-            Text::make('Hint', 'name')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
+            Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
             Text::make('Value', 'value')->required()->sortable(),
             Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
         ];
@@ -39,16 +38,16 @@ class SettingResource extends Resource
     public function rules(Model $item): array
     {
         return [
-            'setting_group_id' => 'required|exists:setting_groups,id',
+            'setting_group_id' => 'nullable|exists:setting_groups,id',
             'slug'  => 'required|max:190|regex:/^([a-z0-9\-]+)$/i|unique:laravel_site_setting_groups,slug,' . $item->getKey(),
-            'name'  => 'nullable|max:190',
+            'hint'  => 'nullable|max:190',
             'value' => 'required|max:190',
         ];
     }
 
     public function search(): array
     {
-        return ['id', 'slug', 'name', 'value'];
+        return ['id', 'slug', 'hint', 'value'];
     }
 
     public function filters(): array
@@ -56,8 +55,7 @@ class SettingResource extends Resource
         return [
             BelongsTo::make(
                 'Group',
-                'setting_group_id',
-                fn($item) => $item->name_human
+                'setting_group_id'
             )->nullable(),
         ];
     }

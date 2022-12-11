@@ -4,6 +4,7 @@ namespace VI\LaravelSiteSettings;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Support\Arr;
+use VI\LaravelSiteSettings\Models\Setting;
 use VI\LaravelSiteSettings\Models\SettingGroup;
 
 class LaravelSiteSettings implements ConfigContract
@@ -15,13 +16,18 @@ class LaravelSiteSettings implements ConfigContract
     {
 
         $this->items = cache()->rememberForever(config('laravelsitesettings.cache_key'), function () {
-            return SettingGroup::all()
+            $withGroup = SettingGroup::all()
                 ->load('settings')
                 ->keyBy('slug')
                 ->map(function ($group) {
                     return $group->settings->pluck('value', 'slug');
                 })
                 ->toArray();
+            $withoutGroup = Setting::whereNull('setting_group_id')->get()
+                ->pluck('value', 'slug')
+                ->toArray();
+
+            return array_merge($withGroup, $withoutGroup);
         });
 
     }
