@@ -24,6 +24,8 @@ class LaravelSiteSettingsProvider extends ServiceProvider
     public function boot()
     {
 
+        config(['settings' => app('settings')->all()]);
+
         if ($this->app->runningInConsole()) {
 
             $this->publishes([

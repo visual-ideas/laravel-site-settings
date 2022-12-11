@@ -57,6 +57,11 @@ or Blade directive @settings
     @settings('group.setting')
 ```
 
+or as part of native Laravel config()
+```php
+    @config('settings.group.setting')
+```
+
 For PHPStorm you can set this blade directive with [This instruction](https://www.jetbrains.com/help/phpstorm/blade-page.html) 
 
 ## Usage with MoonShine Laravel Admin
