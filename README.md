@@ -1,4 +1,6 @@
-# Easy laravel cached settings (stored in MYSQL) package with MoonShine Laravel Admin GUI
+# Easy laravel cached settings
+
+Easy laravel cached settings (stored in MYSQL) package with MoonShine Laravel Admin GUI
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/visual-ideas/laravel-site-settings.svg?style=flat-square)](https://packagist.org/packages/visual-ideas/laravel-site-settings)
 [![Total Downloads](https://img.shields.io/packagist/dt/visual-ideas/laravel-site-settings.svg?style=flat-square)](https://packagist.org/packages/visual-ideas/laravel-site-settings)
