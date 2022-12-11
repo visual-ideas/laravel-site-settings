@@ -4,8 +4,8 @@ namespace VI\LaravelSiteSettings;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use VI\LaravelSiteSettings\Models\LaravelSiteSetting;
-use VI\LaravelSiteSettings\Models\LaravelSiteSettingGroup;
+use VI\LaravelSiteSettings\Models\Setting;
+use VI\LaravelSiteSettings\Models\SettingGroup;
 use VI\LaravelSiteSettings\Observers\LSSObserver;
 
 class LaravelSiteSettingsProvider extends ServiceProvider
@@ -13,7 +13,7 @@ class LaravelSiteSettingsProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('LssConfig', function ($app) {
+        $this->app->bind('settings', function ($app) {
             return new LaravelSiteSettings();
         });
 
@@ -38,12 +38,12 @@ class LaravelSiteSettingsProvider extends ServiceProvider
 
         }
 
-        Blade::directive('lssconfig', function (...$expression) {
-            return "<?php echo lssconfig($expression); ?>";
+        Blade::directive('settings', function ($expression) {
+            return "<?php echo settings($expression); ?>";
         });
 
-        LaravelSiteSetting::observe(LSSObserver::class);
-        LaravelSiteSettingGroup::observe(LSSObserver::class);
+        Setting::observe(LSSObserver::class);
+        SettingGroup::observe(LSSObserver::class);
 
     }
 

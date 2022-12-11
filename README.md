@@ -1,4 +1,4 @@
-# Easy Laravel grouped settings (stored in MYSQL) package with MoonShine Laravel Admin GUI
+# Easy laravel cached settings (stored in MYSQL) package with MoonShine Laravel Admin GUI
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/visual-ideas/laravel-site-settings.svg?style=flat-square)](https://packagist.org/packages/visual-ideas/laravel-site-settings)
 [![Total Downloads](https://img.shields.io/packagist/dt/visual-ideas/laravel-site-settings.svg?style=flat-square)](https://packagist.org/packages/visual-ideas/laravel-site-settings)
@@ -52,8 +52,10 @@ You can use this package as default laravel config() function!
 
 or Blade directive @lssconfig
 ```php
-    @lssconfig('group.setting')
+    @settings('group.setting')
 ```
+
+For PHPStorm you can set this blade directive with [This instruction](https://www.jetbrains.com/help/phpstorm/blade-page.html) 
 
 ## Usage with MoonShine Laravel Admin
 Please see [MoonShine](https://moonshine.cutcode.ru/)

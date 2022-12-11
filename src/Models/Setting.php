@@ -3,29 +3,27 @@
 namespace VI\LaravelSiteSettings\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class LaravelSiteSettingGroup extends Model
+class Setting extends Model
 {
     protected $guarded = [];
 
     protected $fillable = [
+        'setting_group_id',
         'slug',
         'name',
+        'value',
     ];
 
-    public function laravel_site_settings(): HasMany
+    public function settingsGroup(): BelongsTo
     {
-        return $this->hasMany(LaravelSiteSetting::class);
-    }
-
-    public function settings(): HasMany
-    {
-        return $this->laravel_site_settings();
+        return $this->belongsTo(SettingGroup::class);
     }
 
     public function getNameHumanAttribute(): string
     {
+
         $string = $this->slug;
 
         if (!empty($this->name)) {

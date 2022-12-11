@@ -1,7 +1,7 @@
 <?php
 
 
-if (!function_exists('lss_config')) {
+if (!function_exists('settings')) {
     /**
      * Get / set the specified configuration value.
      *
@@ -11,7 +11,7 @@ if (!function_exists('lss_config')) {
      * @param mixed $default
      * @return mixed|\Illuminate\Config\Repository
      */
-    function lss_config($key = null, $default = null)
+    function settings($key = null, $default = null)
     {
         if (is_null($key)) {
             return app('LssConfig')->all();

@@ -4,7 +4,7 @@ namespace VI\LaravelSiteSettings;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Support\Arr;
-use VI\LaravelSiteSettings\Models\LaravelSiteSettingGroup;
+use VI\LaravelSiteSettings\Models\SettingGroup;
 
 class LaravelSiteSettings implements ConfigContract
 {
@@ -15,7 +15,7 @@ class LaravelSiteSettings implements ConfigContract
     {
 
         $this->items = cache()->rememberForever(config('laravelsitesettings.cache_key'), function () {
-            return LaravelSiteSettingGroup::all()
+            return SettingGroup::all()
                 ->load('settings')
                 ->keyBy('slug')
                 ->map(function ($group) {
@@ -46,9 +46,6 @@ class LaravelSiteSettings implements ConfigContract
      */
     public function get($key, $default = null): mixed
     {
-        if (is_array($key)) {
-            return $this->getMany($key);
-        }
 
         return Arr::get($this->items, $key, $default);
     }
@@ -112,23 +109,6 @@ class LaravelSiteSettings implements ConfigContract
         $array[] = $value;
 
         $this->set($key, $array);
-    }
-
-    /**
-     * Get many configuration values.
-     *
-     * @param array $keys
-     * @return array
-     */
-    public function getMany(array $keys): array
-    {
-        $config = [];
-
-        foreach ($keys as $key => $default) {
-            $config[$key] = Arr::get($this->items, $key, $default);
-        }
-
-        return $config;
     }
 
 }

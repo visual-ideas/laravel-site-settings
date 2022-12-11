@@ -30,7 +30,7 @@ class LaravelSiteSettingResource extends Resource
                 fn($item) => $item->name_human
             )->nullable()->sortable(),
             Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -'),
-            Text::make('Name', 'name')->nullable()->sortable(),
+            Text::make('Name', 'name')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
             Text::make('Value', 'value')->required()->sortable(),
             Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
         ];

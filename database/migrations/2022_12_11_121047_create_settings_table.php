@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
@@ -13,14 +12,21 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('laravel_site_setting_groups', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('slug', 190)->unique();
-            $table->string('name', 190)->nullable();
-            $table->timestamps();
-        });
 
-        \VI\LaravelSiteSettings\Models\LaravelSiteSettingGroup::create(['slug' =>'default', 'name' =>'Default']);
+            $table->foreignId('setting_group_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->string('slug', 190);
+            $table->string('name', 190)->nullable();
+            $table->string('value', 190);
+            $table->timestamps();
+
+            $table->unique('setting_group_id', 'slug');
+        });
     }
 
     /**
@@ -30,6 +36,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('laravel_site_setting_groups');
+        Schema::dropIfExists('settings');
     }
 };
