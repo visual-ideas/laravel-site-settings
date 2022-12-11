@@ -32,7 +32,7 @@ class SettingGroupResource extends Resource
     public function rules(Model $item): array
     {
         return [
-            'slug' => 'required|max:190|regex:/^([a-z0-9\-]+)$/i|unique:laravel_site_setting_groups,slug,' . $item->getKey(),
+            'slug' => 'required|max:190|regex:/^([a-z0-9\-]+)$/i|unique:setting_groups,slug,' . $item->getKey(),
             'hint' => 'nullable|max:190',
         ];
     }
