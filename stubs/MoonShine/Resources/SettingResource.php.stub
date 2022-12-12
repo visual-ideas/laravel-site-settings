@@ -29,7 +29,7 @@ class SettingResource extends Resource
                 'setting_group_id',
                 new SettingGroupResource()
             )->nullable()->sortable(),
-            Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -'),
+            Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
             Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
             Text::make('Value', 'value')->required()->sortable(),
             Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
@@ -40,7 +40,7 @@ class SettingResource extends Resource
     {
         return [
             'setting_group_id' => 'nullable|exists:setting_groups,id',
-            'slug'  => 'required|max:190|regex:/^([a-z0-9\-]+)$/i|unique:setting_groups,slug|unique:settings,slug,' . $item->getKey(),
+            'slug'  => 'required|max:190|regex:/^([a-z0-9\-\_]+)$/i|unique:setting_groups,slug|unique:settings,slug,' . $item->getKey(),
             'hint'  => 'nullable|max:190',
             'value' => 'required|max:190',
         ];

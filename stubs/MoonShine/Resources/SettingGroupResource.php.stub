@@ -23,7 +23,7 @@ class SettingGroupResource extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -'),
+            Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
             Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
             Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
         ];
@@ -32,7 +32,7 @@ class SettingGroupResource extends Resource
     public function rules(Model $item): array
     {
         return [
-            'slug' => 'required|max:190|regex:/^([a-z0-9\-]+)$/i|unique:setting_groups,slug,' . $item->getKey(),
+            'slug' => 'required|max:190|regex:/^([a-z0-9\-\_]+)$/i|unique:setting_groups,slug,' . $item->getKey(),
             'hint' => 'nullable|max:190',
         ];
     }

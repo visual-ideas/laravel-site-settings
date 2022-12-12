@@ -80,7 +80,11 @@ class LaravelSiteSettings implements ConfigContract
 
         foreach ($keys as $key => $value) {
             Arr::set($this->items, $key, $value);
+
+            $this->saveToDB($key, $value);
         }
+
+        //dd($key, $value);
     }
 
     /**
@@ -113,6 +117,29 @@ class LaravelSiteSettings implements ConfigContract
         $array[] = $value;
 
         $this->set($key, $array);
+    }
+
+    protected function saveToDB($key, $value)
+    {
+
+        $keys = explode('.', $key);
+
+        if (count($keys) > 2) {
+            return;
+        }
+
+        if (count($keys) == 2) {
+            $group = array_shift($keys);
+            $group = SettingGroup::firstOrCreate(['slug' => $group])->id;
+        }
+
+        Setting::updateOrCreate([
+            'setting_group_id' => $group ?? null,
+            'slug'             => current($keys),
+        ], [
+            'value' => $value,
+        ]);
+
     }
 
 }
