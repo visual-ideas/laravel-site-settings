@@ -38,31 +38,42 @@ return [
 You can use this package as default laravel config() function!
 
 ```php
-    function settings($key = null, $default = null)
-    {
-        if (is_null($key)) {
-            return app('Settings')->all();
-        }
-
-        if (is_array($key)) {
-            return app('Settings')->set($key);
-        }
-
-        return app('Settings')->get($key, $default);
+function settings($key = null, $default = null)
+{
+    if (is_null($key)) {
+        return app('Settings')->all();
     }
+
+    if (is_array($key)) {
+        return app('Settings')->set($key);
+    }
+
+    return app('Settings')->get($key, $default);
+}
 ```
 
 or Blade directive @settings
 ```php
-    @settings('group.setting')
+@settings('group.setting')
 ```
 
 or as part of native Laravel config()
 ```php
-    @config('settings.group.setting')
+@config('settings.group.setting')
 ```
 
 For PHPStorm you can set this blade directive with [This instruction](https://www.jetbrains.com/help/phpstorm/blade-page.html) 
+
+## Update settings
+
+You can use models VI\LaravelSiteSettings\Models\SettingGroup and VI\LaravelSiteSettings\Models\Setting
+
+or set settings values with the settings() function:
+```php
+settings(['group.setting' => 'Value']);
+settings(['setting' => 'Value']);
+```
+
 
 ## Usage with MoonShine Laravel Admin
 Please see [MoonShine](https://moonshine.cutcode.ru/)
