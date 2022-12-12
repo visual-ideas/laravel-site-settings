@@ -108,14 +108,14 @@ But you can use seeder or migration to set your settings
 
 ```php
 settings([
-['group.setting1' => 'Value1'],
-['group.setting2' => 'Value2'],
-['group.setting3' => 'Value3'],
-['setting1' => 'Value4'],
-['setting2' => 'Value5'],
-['setting3' => 'Value6'],
-['setting4' => 'Value7'],
-['setting5' => 'Value8']
+    ['group.setting1' => 'Value1'],
+    ['group.setting2' => 'Value2'],
+    ['group.setting3' => 'Value3'],
+    ['setting1' => 'Value4'],
+    ['setting2' => 'Value5'],
+    ['setting3' => 'Value6'],
+    ['setting4' => 'Value7'],
+    ['setting5' => 'Value8']
 ]);
 ```
 
