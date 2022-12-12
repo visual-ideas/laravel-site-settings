@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->string('value', 190);
             $table->timestamps();
 
-            $table->unique('setting_group_id', 'slug');
+            $table->unique(['setting_group_id', 'slug']);
         });
     }
 
