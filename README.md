@@ -74,7 +74,6 @@ settings(['group.setting' => 'Value']);
 settings(['setting' => 'Value']);
 ```
 
-
 ## Usage with MoonShine Laravel Admin
 Please see [MoonShine](https://moonshine.cutcode.ru/)
 
@@ -85,10 +84,16 @@ php artisan vendor:publish --provider="VI\LaravelSiteSettings\LaravelSiteSetting
 and use them in your MoonShine admin panel, like this:
 
 ```php
-MenuGroup::make('Настройки', [
-    MenuItem::make('Настройки', LaravelSiteSettingResource::class)->icon('app'),
-    MenuItem::make('Группы настроек', LaravelSiteSettingGroupResource::class)->icon('app'),
+MenuGroup::make('Settings', [
+    MenuItem::make('Settings', LaravelSiteSettingResource::class)->icon('app'),
+    MenuItem::make('Settings groups', LaravelSiteSettingGroupResource::class)->icon('app'),
 ])->icon('app'),
+```
+
+## Seeding settings
+I recommend saving the settings in the seeders using the [orangehill/iseed](https://github.com/orangehill/iseed) package:
+```bash
+php artisan iseed setting_groups,settings
 ```
 
 ## Credits
