@@ -4,6 +4,7 @@ namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Validation\Rule;
 use Leeto\MoonShine\Fields\BelongsTo;
 use Leeto\MoonShine\Fields\Date;
 use Leeto\MoonShine\Fields\Text;
@@ -26,7 +27,7 @@ class SettingResource extends Resource
             ID::make()->sortable(),
             BelongsTo::make(
                 'Group',
-                'setting_group_id',
+                'settingGroup',
                 new SettingGroupResource()
             )->nullable()->sortable(),
             Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
@@ -40,7 +41,16 @@ class SettingResource extends Resource
     {
         return [
             'setting_group_id' => 'nullable|exists:setting_groups,id',
-            'slug'  => 'required|max:190|regex:/^([a-z0-9\-\_]+)$/i|unique:setting_groups,slug|unique:settings,slug,' . $item->getKey(),
+            'slug'  => [
+                'required',
+                'max:190',
+                'regex:/^([a-z0-9\-\_]+)$/i',
+                'unique:setting_groups,slug',
+                Rule::unique('settings','slug')->where(function ($query) use ($item) {
+                    return $query->where('id','!=', $item->getKey())
+                        ->where('setting_group_id', $item->setting_group_id);
+                }),
+            ],
             'hint'  => 'nullable|max:190',
             'value' => 'required|max:190',
         ];
@@ -56,9 +66,8 @@ class SettingResource extends Resource
         return [
             BelongsTo::make(
                 'Group',
-                'setting_group_id',
-                new SettingGroupResource()
-            )->nullable(),
+                'settingGroup'
+            ),
         ];
     }
 
