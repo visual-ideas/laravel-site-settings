@@ -93,8 +93,8 @@ and use them in your MoonShine admin panel, like this:
 
 ```php
 MenuGroup::make('Settings', [
-    MenuItem::make('Settings', LaravelSiteSettingResource::class)->icon('app'),
-    MenuItem::make('Settings groups', LaravelSiteSettingGroupResource::class)->icon('app'),
+    MenuItem::make('Settings', SettingResource::class)->icon('app'),
+    MenuItem::make('Settings groups', SettingGroupResource::class)->icon('app'),
 ])->icon('app'),
 ```
 
