@@ -57,6 +57,8 @@ or Blade directive @settings
 ```php
 @settings('group.setting')
 ```
+For PHPStorm you can set this blade directive with [This instruction](https://www.jetbrains.com/help/phpstorm/blade-page.html)
+
 
 or as part of native Laravel config()
 
@@ -64,7 +66,7 @@ or as part of native Laravel config()
 @config('settings.group.setting')
 ```
 
-For PHPStorm you can set this blade directive with [This instruction](https://www.jetbrains.com/help/phpstorm/blade-page.html)
+<b>Not working in console!</b>
 
 ## Update settings
 
