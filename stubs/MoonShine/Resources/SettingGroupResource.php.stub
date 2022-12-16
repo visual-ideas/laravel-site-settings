@@ -4,18 +4,21 @@ namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Validation\Rule;
+use Leeto\MoonShine\Fields\BelongsTo;
 use Leeto\MoonShine\Fields\Date;
 use Leeto\MoonShine\Fields\Text;
+use Leeto\MoonShine\Filters\BelongsToFilter;
 use Leeto\MoonShine\Resources\Resource;
 use Leeto\MoonShine\Fields\ID;
 use Leeto\MoonShine\Actions\FiltersAction;
-use VI\LaravelSiteSettings\Models\SettingGroup;
+use VI\LaravelSiteSettings\Models\Setting;
 
-class SettingGroupResource extends Resource
+class SettingResource extends Resource
 {
-    public static string $model = SettingGroup::class;
+    public static string $model = Setting::class;
 
-    public static string $title = 'Settings groups';
+    public static string $title = 'Settings';
 
     public string $titleField = 'slug';
 
@@ -23,8 +26,14 @@ class SettingGroupResource extends Resource
     {
         return [
             ID::make()->sortable(),
+            BelongsTo::make(
+                'Group',
+                'settingGroup',
+                new SettingGroupResource()
+            )->nullable()->sortable(),
             Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
             Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
+            Text::make('Value', 'value')->required()->sortable(),
             Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
         ];
     }
@@ -32,19 +41,35 @@ class SettingGroupResource extends Resource
     public function rules(Model $item): array
     {
         return [
-            'slug' => 'required|max:190|regex:/^([a-z0-9\-\_]+)$/i|unique:setting_groups,slug,' . $item->getKey(),
-            'hint' => 'nullable|max:190',
+            'setting_group_id' => 'nullable|exists:setting_groups,id',
+            'slug'  => [
+                'required',
+                'max:190',
+                'regex:/^([a-z0-9\-\_]+)$/i',
+                'unique:setting_groups,slug',
+                Rule::unique('settings','slug')->where(function ($query) use ($item) {
+                    return $query->where('id','!=', $item->getKey())
+                        ->where('setting_group_id', $item->setting_group_id);
+                }),
+            ],
+            'hint'  => 'nullable|max:190',
+            'value' => 'required|max:190',
         ];
     }
 
     public function search(): array
     {
-        return ['id', 'slug', 'hint'];
+        return ['id', 'slug', 'hint', 'value'];
     }
 
     public function filters(): array
     {
-        return [];
+        return [
+            BelongsToFilter::make(
+                'Group',
+                'settingGroup'
+            ),
+        ];
     }
 
     public function actions(): array
