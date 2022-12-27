@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::table('settings', function (Blueprint $table) {
             $table->text('value')->change();
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::table('settings', function (Blueprint $table) {
             $table->string('value', 190)->change();
         });
     }
