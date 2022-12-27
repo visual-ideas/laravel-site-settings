@@ -53,7 +53,7 @@ class SettingResource extends Resource
                 }),
             ],
             'hint'  => 'nullable|max:190',
-            'value' => 'required|max:190',
+            'value' => 'required',
         ];
     }
 
