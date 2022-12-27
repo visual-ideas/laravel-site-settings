@@ -14,7 +14,7 @@ use Leeto\MoonShine\Fields\ID;
 use Leeto\MoonShine\Actions\FiltersAction;
 use VI\LaravelSiteSettings\Models\Setting;
 
-class SettingResource extends Resource
+class SettingGroupResource extends Resource
 {
     public static string $model = Setting::class;
 
