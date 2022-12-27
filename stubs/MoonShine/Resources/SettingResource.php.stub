@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 use Leeto\MoonShine\Fields\BelongsTo;
 use Leeto\MoonShine\Fields\Date;
 use Leeto\MoonShine\Fields\Text;
+use Leeto\MoonShine\Fields\Textarea;
 use Leeto\MoonShine\Resources\Resource;
 use Leeto\MoonShine\Fields\ID;
 use Leeto\MoonShine\Actions\FiltersAction;
@@ -32,7 +33,7 @@ class SettingResource extends Resource
             )->nullable()->sortable(),
             Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
             Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
-            Text::make('Value', 'value')->required()->sortable(),
+            Textarea::make('Value', 'value')->required()->sortable(),
             Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
         ];
     }
