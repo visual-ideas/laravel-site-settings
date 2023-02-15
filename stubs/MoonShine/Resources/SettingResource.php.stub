@@ -5,10 +5,12 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Validation\Rule;
+use Leeto\MoonShine\Decorations\Block;
 use Leeto\MoonShine\Fields\BelongsTo;
 use Leeto\MoonShine\Fields\Date;
 use Leeto\MoonShine\Fields\Text;
 use Leeto\MoonShine\Fields\Textarea;
+use Leeto\MoonShine\Filters\BelongsToFilter;
 use Leeto\MoonShine\Resources\Resource;
 use Leeto\MoonShine\Fields\ID;
 use Leeto\MoonShine\Actions\FiltersAction;
@@ -22,19 +24,30 @@ class SettingResource extends Resource
 
     public string $titleField = 'slug';
 
+    public function tdStyles(Model $item, int $index, int $cell): string
+    {
+        if (in_array($cell, [4, 5])) {
+            return 'white-space: normal;';
+        }
+
+        return '';
+    }
+
     public function fields(): array
     {
         return [
-            ID::make()->sortable(),
-            BelongsTo::make(
-                'Group',
-                'settingGroup',
-                new SettingGroupResource()
-            )->nullable()->sortable(),
-            Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
-            Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
-            Textarea::make('Value', 'value')->required()->sortable(),
-            Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
+            Block::make('Main', [
+                ID::make()->sortable(),
+                BelongsTo::make(
+                    'Group',
+                    'settingGroup',
+                    new SettingGroupResource()
+                )->nullable()->sortable(),
+                Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
+                Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
+                Textarea::make('Value', 'value')->nullable()->sortable(),
+                Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
+            ]),
         ];
     }
 
@@ -42,18 +55,18 @@ class SettingResource extends Resource
     {
         return [
             'setting_group_id' => 'nullable|exists:setting_groups,id',
-            'slug'  => [
+            'slug'             => [
                 'required',
                 'max:190',
                 'regex:/^([a-z0-9\-\_]+)$/i',
                 'unique:setting_groups,slug',
-                Rule::unique('settings','slug')->where(function ($query) use ($item) {
-                    return $query->where('id','!=', $item->getKey())
+                Rule::unique('settings', 'slug')->where(function ($query) use ($item) {
+                    return $query->where('id', '!=', $item->getKey())
                         ->where('setting_group_id', $item->setting_group_id);
                 }),
             ],
-            'hint'  => 'nullable|max:190',
-            'value' => 'required',
+            'hint'             => 'nullable|max:190',
+            'value'            => 'nullable|string',
         ];
     }
 
@@ -65,7 +78,7 @@ class SettingResource extends Resource
     public function filters(): array
     {
         return [
-            BelongsTo::make(
+            BelongsToFilter::make(
                 'Group',
                 'settingGroup'
             ),
