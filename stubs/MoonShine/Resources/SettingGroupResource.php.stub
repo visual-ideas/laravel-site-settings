@@ -4,6 +4,7 @@ namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Leeto\MoonShine\Decorations\Block;
 use Leeto\MoonShine\Fields\Date;
 use Leeto\MoonShine\Fields\Text;
 use Leeto\MoonShine\Resources\Resource;
@@ -22,10 +23,12 @@ class SettingGroupResource extends Resource
     public function fields(): array
     {
         return [
-            ID::make()->sortable(),
-            Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
-            Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
-            Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
+            Block::make('Main', [
+                ID::make()->sortable(),
+                Text::make('Slug', 'slug')->required()->sortable()->hint('a-z, 0-9, -, _'),
+                Text::make('Hint', 'hint')->nullable()->sortable()->hint('Не используется на сайте, только для удобства администрирования!'),
+                Date::make('Updated at', 'updated_at')->sortable()->hideOnForm(),
+            ]),
         ];
     }
 
