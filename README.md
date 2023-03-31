@@ -83,19 +83,21 @@ settings(['setting' => 'Value']);
 
 Please see [MoonShine](https://moonshine.cutcode.ru/)
 
-You can publish two [MoonShine Resources](https://moonshine.cutcode.ru/resources-index) with command:
-
-```bash
-php artisan vendor:publish --provider="VI\LaravelSiteSettings\LaravelSiteSettingsProvider" --tag="moonshine"
-```
-
-and use them in your MoonShine admin panel, like this:
+You can use settings in your MoonShine admin panel, like this:
 
 ```php
 MenuGroup::make('Settings', [
-    MenuItem::make('Settings', SettingResource::class)->icon('app'),
-    MenuItem::make('Settings groups', SettingGroupResource::class)->icon('app'),
-])->icon('app'),
+    MenuItem::make(
+        'Setting groups',
+        new \VI\LaravelSiteSettings\MoonShine\Resources\SettingGroupResource(),
+        'heroicons.outline.wrench-screwdriver'
+    ),
+    MenuItem::make(
+        'Settings',
+        new \VI\LaravelSiteSettings\MoonShine\Resources\SettingResource(),
+        'heroicons.outline.wrench'
+    ),
+], 'heroicons.outline.cog-8-tooth'),
 ```
 
 ## Seeding settings
