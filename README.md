@@ -1,6 +1,6 @@
 # Easy laravel cached settings
 
-Easy laravel cached settings (stored in MYSQL) package with MoonShine Laravel Admin GUI
+Easy laravel cached settings (stored in MYSQL) package with MoonShine/Filament Laravel Admin GUI
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/visual-ideas/laravel-site-settings.svg?style=flat-square)](https://packagist.org/packages/visual-ideas/laravel-site-settings)
 [![Total Downloads](https://img.shields.io/packagist/dt/visual-ideas/laravel-site-settings.svg?style=flat-square)](https://packagist.org/packages/visual-ideas/laravel-site-settings)
@@ -30,6 +30,9 @@ This is the contents of the published config file:
 ```php
 return [
     'cache_key' => env('LSS_CACHE_KEY','laravel_site_settings_data'),
+   
+    // Set to true if you're using Filament (https://filamentphp.com/)
+    'filament' => false,
 ];
 ```
 
@@ -79,11 +82,26 @@ settings(['group.setting' => 'Value']);
 settings(['setting' => 'Value']);
 ```
 
-## Usage with MoonShine Laravel Admin
+## Usage with MoonShine Laravel Admin panel
 
 Please see [MoonShine](https://moonshine.cutcode.ru/)
 
 You can use settings in your MoonShine admin panel, like this:
+
+```php
+    //...   
+    // Set to true if you're using Filament (https://filamentphp.com/)
+    'filament' => true,
+    //...
+```
+
+## Usage with Filament Laravel Admin panel
+
+Please see [Filament](https://filamentphp.com)
+
+You can use settings in your Filament admin panel!
+
+Just change config file:
 
 ```php
 MenuGroup::make('Settings', [
