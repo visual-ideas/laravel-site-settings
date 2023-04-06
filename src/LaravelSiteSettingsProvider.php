@@ -19,6 +19,10 @@ class LaravelSiteSettingsProvider extends ServiceProvider
         });
 
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'laravelsitesettings');
+
+        if (config('laravelsitesettings.filament')) {
+            $this->app->register(FilamentLaravelSiteSettingsProvider::class);
+        }
     }
 
     public function boot()
