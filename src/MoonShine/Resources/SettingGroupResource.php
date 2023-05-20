@@ -96,7 +96,7 @@ class SettingGroupResource extends Resource
     public function actions(): array
     {
         return [
-            ExportAction::make(trans('moonshine::ui.export')),
+            
         ];
     }
 
