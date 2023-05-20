@@ -110,6 +110,7 @@ class SettingResource extends Resource
     public function filters(): array
     {
         return [
+            BelongsToFilter::make('Group', 'settingGroup'),
         ];
     }
 
