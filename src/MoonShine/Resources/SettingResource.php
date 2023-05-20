@@ -4,7 +4,6 @@ namespace VI\LaravelSiteSettings\MoonShine\Resources;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Validation\Rule;
-use Leeto\MoonShine\Actions\ExportAction;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\ID;
@@ -117,7 +116,7 @@ class SettingResource extends Resource
     public function actions(): array
     {
         return [
-            ExportAction::make(trans('moonshine::ui.export')),
+            
         ];
     }
 
