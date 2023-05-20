@@ -89,21 +89,6 @@ Please see [MoonShine](https://moonshine.cutcode.ru/)
 You can use settings in your MoonShine admin panel, like this:
 
 ```php
-    //...   
-    // Set to true if you're using Filament (https://filamentphp.com/)
-    'filament' => true,
-    //...
-```
-
-## Usage with Filament Laravel Admin panel
-
-Please see [Filament](https://filamentphp.com)
-
-You can use settings in your Filament admin panel!
-
-Just change config file:
-
-```php
 MenuGroup::make('Settings', [
     MenuItem::make(
         'Setting groups',
@@ -116,6 +101,21 @@ MenuGroup::make('Settings', [
         'heroicons.outline.wrench'
     ),
 ], 'heroicons.outline.cog-8-tooth'),
+```
+
+## Usage with Filament Laravel Admin panel
+
+Please see [Filament](https://filamentphp.com)
+
+You can use settings in your Filament admin panel!
+
+Just change config file:
+
+```php
+    //...   
+    // Set to true if you're using Filament (https://filamentphp.com/)
+    'filament' => true,
+    //...
 ```
 
 ## Seeding settings
