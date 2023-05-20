@@ -3,13 +3,13 @@
 namespace VI\LaravelSiteSettings\MoonShine\Resources;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Leeto\MoonShine\Actions\ExportAction;
-use Leeto\MoonShine\Decorations\Block;
-use Leeto\MoonShine\Fields\Date;
-use Leeto\MoonShine\Fields\ID;
-use Leeto\MoonShine\Fields\NoInput;
-use Leeto\MoonShine\Fields\Text;
-use Leeto\MoonShine\Resources\Resource;
+use MoonShine\Actions\ExportAction;
+use MoonShine\Decorations\Block;
+use MoonShine\Fields\Date;
+use MoonShine\Fields\ID;
+use MoonShine\Fields\NoInput;
+use MoonShine\Fields\Text;
+use MoonShine\Resources\Resource;
 use VI\LaravelSiteSettings\Models\SettingGroup;
 
 
