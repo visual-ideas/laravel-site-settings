@@ -21,6 +21,8 @@ class SettingGroupResource extends Resource
 
     public string $titleField = 'slug';
 
+    public static array $activeActions = ['create', 'show', 'edit'];
+
     // TODO Add translation
     //public function title(): string
     //{
