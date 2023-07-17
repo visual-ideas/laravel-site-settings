@@ -47,6 +47,12 @@ class LaravelSiteSettingsProvider extends ServiceProvider
         Setting::observe(LSSObserver::class);
         SettingGroup::observe(LSSObserver::class);
 
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'laravel-site-settings');
+
+        $this->publishes([
+            __DIR__.'/../lang' => $this->app->langPath('vendor/laravel-site-settings'),
+        ]);
+
     }
 
 }

@@ -34,11 +34,11 @@ class SettingResource extends Resource
     public function fields(): array
     {
         return [
-            Block::make('Main', [
+            Block::make(__('laravel-site-settings::ui.main'), [
                 ID::make()->sortable(),
 
                 BelongsTo::make(
-                    'Group',
+                    __('laravel-site-settings::ui.group'),
                     'settingGroup',
                     new SettingGroupResource()
                 )
@@ -46,28 +46,28 @@ class SettingResource extends Resource
                     ->sortable()
                     ->showOnExport(),
 
-                Text::make('Slug', 'slug')
+                Text::make(__('laravel-site-settings::ui.slug'), 'slug')
                     ->required()
                     ->sortable()
                     ->hint('a-z, 0-9, -, _')
                     ->showOnExport(),
 
-                Text::make('Hint', 'hint')
+                Text::make(__('laravel-site-settings::ui.hint'), 'hint')
                     ->nullable()
                     ->sortable()
-                    ->hint('Не используется на сайте, только для удобства администрирования!')
+                    ->hint(__('laravel-site-settings::not_used'))
                     ->showOnExport(),
 
-                Textarea::make('Value', 'value')->nullable()->sortable()
+                Textarea::make(__('laravel-site-settings::ui.value'), 'value')->nullable()->sortable()
                     ->showOnExport(),
 
-                NoInput::make('Created at', 'created_at',
+                NoInput::make(__('laravel-site-settings::ui.created_at'), 'created_at',
                     fn(Setting $item) => $item->created_at->isoFormat('lll'))
                     ->sortable()
                     ->hideOnForm()
                     ->showOnExport(),
 
-                NoInput::make('Updated at', 'updated_at',
+                NoInput::make(__('laravel-site-settings::ui.updated_at'), 'updated_at',
                     fn(Setting $item) => $item->updated_at->isoFormat('lll'))
                     ->sortable()
                     ->hideOnForm()
