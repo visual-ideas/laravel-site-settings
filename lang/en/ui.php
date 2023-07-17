@@ -9,4 +9,7 @@ return [
     'value' => 'Value',
     'created_at' => 'Created at',
     'updated_at' => 'Updated at',
+    'count_settings' => 'Count settings',
+    'settings_groups' => 'Settings groups',
+    'settings' => 'Settings'
 ];

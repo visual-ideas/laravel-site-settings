@@ -22,43 +22,42 @@ class SettingGroupResource extends Resource
 
     public static array $activeActions = ['create', 'show', 'edit'];
 
-    // TODO Add translation
-    //public function title(): string
-    //{
-    //    return trans('moonshine::ui.resource.admins_title');
-    //}
+    public function title(): string
+    {
+        return __('laravel-site-settings::ui.settings_groups');
+    }
 
     public function fields(): array
     {
         return [
-            Block::make('Main', [
+            Block::make(__('laravel-site-settings::ui.main'), [
                 ID::make()->sortable(),
 
-                Text::make('Slug', 'slug')
+                Text::make(__('laravel-site-settings::ui.slug'), 'slug')
                     ->required()
                     ->sortable()
                     ->hint('a-z, 0-9, -, _')
                     ->showOnExport(),
 
-                Text::make('Hint', 'hint')
+                Text::make(__('laravel-site-settings::ui.hint'), 'hint')
                     ->nullable()
                     ->sortable()
-                    ->hint('Не используется на сайте, только для удобства администрирования!')
+                    ->hint(__('laravel-site-settings::ui.not_used'))
                     ->showOnExport(),
 
-                NoInput::make('Created at', 'created_at',
+                NoInput::make(__('laravel-site-settings::ui.created_at'), 'created_at',
                     fn(SettingGroup $item)=>$item->created_at->isoFormat('lll'))
                     ->sortable()
                     ->hideOnForm()
                     ->showOnExport(),
 
-                NoInput::make('Updated at', 'updated_at',
+                NoInput::make(__('laravel-site-settings::ui.updated_at'), 'updated_at',
                     fn(SettingGroup $item)=>$item->updated_at->isoFormat('lll'))
                     ->sortable()
                     ->hideOnForm()
                     ->showOnExport(),
 
-                NoInput::make('Count settings', 'settings_count')
+                NoInput::make(__('laravel-site-settings::ui.count_settings'), 'settings_count')
                     ->sortable()
                     ->hideOnForm()
                     ->hideOnDetail()
@@ -95,7 +94,7 @@ class SettingGroupResource extends Resource
     public function actions(): array
     {
         return [
-            
+
         ];
     }
 

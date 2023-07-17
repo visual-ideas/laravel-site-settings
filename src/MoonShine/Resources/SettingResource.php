@@ -25,11 +25,10 @@ class SettingResource extends Resource
 
     public static array $activeActions = ['create', 'show', 'edit'];
 
-    // TODO Add translation
-    //public function title(): string
-    //{
-    //    return trans('moonshine::ui.resource.admins_title');
-    //}
+    public function title(): string
+    {
+        return __('laravel-site-settings::ui.settings');
+    }
 
     public function fields(): array
     {
@@ -55,7 +54,7 @@ class SettingResource extends Resource
                 Text::make(__('laravel-site-settings::ui.hint'), 'hint')
                     ->nullable()
                     ->sortable()
-                    ->hint(__('laravel-site-settings::not_used'))
+                    ->hint(__('laravel-site-settings::ui.not_used'))
                     ->showOnExport(),
 
                 Textarea::make(__('laravel-site-settings::ui.value'), 'value')->nullable()->sortable()
@@ -118,7 +117,7 @@ class SettingResource extends Resource
     public function actions(): array
     {
         return [
-            
+
         ];
     }
 
