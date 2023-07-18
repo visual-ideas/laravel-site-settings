@@ -24,40 +24,40 @@ class SettingGroupResource extends Resource
 
     public function title(): string
     {
-        return __('laravel-site-settings::ui.settings_groups');
+        return trans('laravel-site-settings::ui.settings_groups');
     }
 
     public function fields(): array
     {
         return [
-            Block::make(__('laravel-site-settings::ui.main'), [
+            Block::make(trans('laravel-site-settings::ui.main'), [
                 ID::make()->sortable(),
 
-                Text::make(__('laravel-site-settings::ui.slug'), 'slug')
+                Text::make(trans('laravel-site-settings::ui.slug'), 'slug')
                     ->required()
                     ->sortable()
                     ->hint('a-z, 0-9, -, _')
                     ->showOnExport(),
 
-                Text::make(__('laravel-site-settings::ui.hint'), 'hint')
+                Text::make(trans('laravel-site-settings::ui.hint'), 'hint')
                     ->nullable()
                     ->sortable()
-                    ->hint(__('laravel-site-settings::ui.not_used'))
+                    ->hint(trans('laravel-site-settings::ui.not_used'))
                     ->showOnExport(),
 
-                NoInput::make(__('laravel-site-settings::ui.created_at'), 'created_at',
+                NoInput::make(trans('laravel-site-settings::ui.created_at'), 'created_at',
                     fn(SettingGroup $item)=>$item->created_at->isoFormat('lll'))
                     ->sortable()
                     ->hideOnForm()
                     ->showOnExport(),
 
-                NoInput::make(__('laravel-site-settings::ui.updated_at'), 'updated_at',
+                NoInput::make(trans('laravel-site-settings::ui.updated_at'), 'updated_at',
                     fn(SettingGroup $item)=>$item->updated_at->isoFormat('lll'))
                     ->sortable()
                     ->hideOnForm()
                     ->showOnExport(),
 
-                NoInput::make(__('laravel-site-settings::ui.count_settings'), 'settings_count')
+                NoInput::make(trans('laravel-site-settings::ui.count_settings'), 'settings_count')
                     ->sortable()
                     ->hideOnForm()
                     ->hideOnDetail()
