@@ -3,6 +3,8 @@
 namespace VI\LaravelSiteSettings\Observers;
 
 use Illuminate\Database\Eloquent\Model;
+use VI\LaravelSiteSettings\Events\LSSSettingChangedEvent;
+use VI\LaravelSiteSettings\Events\LSSSettingGroupChangedEvent;
 use VI\LaravelSiteSettings\Models\Setting;
 use VI\LaravelSiteSettings\Models\SettingGroup;
 
@@ -14,9 +16,9 @@ class LSSObserver
         cache()->forget(config('laravelsitesettings.cache_key'));
 
         if ($model instanceof SettingGroup) {
-            dd('group settings');
+            LSSSettingGroupChangedEvent::dispatch($model);
         } elseif ($model instanceof Setting) {
-            dd('instance settings');
+            LSSSettingChangedEvent::dispatch($model);
         }
     }
 
