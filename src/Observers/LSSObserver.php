@@ -3,19 +3,21 @@
 namespace VI\LaravelSiteSettings\Observers;
 
 use Illuminate\Database\Eloquent\Model;
+use VI\LaravelSiteSettings\Models\Setting;
+use VI\LaravelSiteSettings\Models\SettingGroup;
 
 class LSSObserver
 {
 
-    public function created(Model $model)
+    public function saved(Model $model)
     {
         cache()->forget(config('laravelsitesettings.cache_key'));
-    }
 
-
-    public function updated(Model $model)
-    {
-        cache()->forget(config('laravelsitesettings.cache_key'));
+        if ($model instanceof SettingGroup) {
+            dd('group settings');
+        } elseif ($model instanceof Setting) {
+            dd('instance settings');
+        }
     }
 
 
