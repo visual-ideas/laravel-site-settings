@@ -5,6 +5,15 @@ namespace VI\LaravelSiteSettings\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int $id
+ * @property string $slug
+ * @property string|null $hint
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read string $name_human attribute
+ * @property-read int $settings_count
+ */
 class Setting extends Model
 {
     protected $guarded = [];
@@ -23,11 +32,10 @@ class Setting extends Model
 
     public function getNameHumanAttribute(): string
     {
-
         $string = $this->slug;
 
-        if (!empty($this->name)) {
-            return $string . ' (' . $this->name . ')';
+        if (! empty($this->name)) {
+            return $string.' ('.$this->name.')';
         }
 
         return $string;
