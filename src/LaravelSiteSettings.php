@@ -10,12 +10,17 @@ use VI\LaravelSiteSettings\Models\SettingGroup;
 class LaravelSiteSettings implements ConfigContract
 {
 
-    protected array $items;
+    protected array $items = [];
 
     public function __construct()
     {
 
-        $this->items = cache()->rememberForever(config('laravelsitesettings.cache_key'), function () {
+        if (cache()->has(config('laravelsitesettings.cache_key'))) {
+            $this->items = cache()->get(config('laravelsitesettings.cache_key'));
+            return;
+        }
+
+        try {
             $withGroup = SettingGroup::all()
                 ->load('settings')
                 ->keyBy('slug')
@@ -27,8 +32,10 @@ class LaravelSiteSettings implements ConfigContract
                 ->pluck('value', 'slug')
                 ->toArray();
 
-            return array_merge($withGroup, $withoutGroup);
-        });
+            $this->items = array_merge($withGroup, $withoutGroup); 
+        } catch (\Throwable $e) {
+            $this->items = [];
+        }
 
     }
 
